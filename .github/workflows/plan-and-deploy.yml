@@ -41,7 +41,9 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -out=tfplan -input=false
+        run: |
+          terraform plan -no-color -out=tfplan -input=false
+          terraform show -no-color tfplan > repr-tfplan
         continue-on-error: true
 
       - name: Update Pull Request
@@ -55,7 +57,7 @@ jobs:
 
             let plan;
             try {
-              plan = fs.readFileSync('tfplan', 'utf8');
+              plan = fs.readFileSync('repr-tfplan', 'utf8');
             } catch (err) {
               console.error(err);
               plan = 'failed to generate a plan.';
