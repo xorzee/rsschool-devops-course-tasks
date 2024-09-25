@@ -7,8 +7,7 @@
 - `provider.tf`: Provider setup, AWS
 - `variables.tf`: Common variables
 - `.github/workflows/`:
-    - `plan.yml`: Workflow for planning the infra update based on the shared state.
-    - `deploy.yml`: Workflow to apply the changeset based on the shared state.
+    - `plan-and-deploy.yml`: Workflow for planning and deploying the infra update based on the shared state.
 
 ## How to ...
 
@@ -26,10 +25,8 @@
 
 4. **Deploy**
    To deploy:
-    - Go to the Actions tab in your GitHub repository
-    - Select the "Terraform Deploy" workflow
-    - Click "Run workflow"
-    - Choose the branch and environment, then run
+    - Create a pull request targeting `main` or push to `main`.
+   > Note: The CI/CD is not designed to handle multiple PRs.
 
 ## Notes
 
