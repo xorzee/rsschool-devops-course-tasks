@@ -2,12 +2,12 @@
 
 ## Project Structure
 
-- `state/`: State backend configuration. Not a module, rather a special case
 - `gh_action_role/`: Separate module for GitHub role creation
-- `provider.tf`: Provider setup, AWS
-- `variables.tf`: Common variables
+- `provider.tf`: Provider setup for the main project
+- `variables.tf`: Common variables, such as region
 - `.github/workflows/`:
     - `plan-and-deploy.yml`: Workflow for planning and deploying the infra update based on the shared state.
+- `state/`: State backend configuration. Not a module, rather a special case
 
 ## How to ...
 
@@ -20,16 +20,15 @@
    Modify `variables.tf` to set your preferred project name and environment.
    If you are not willing to share variables in VCS, declare them in `terraform.tfvars`.
 
-3. **Run Terraform Plan**
-   The plan workflow will run automatically on pull requests to the `main` branch.
-
-4. **Deploy**
-   To deploy:
-    - Create a pull request targeting `main` or push to `main`.
-   > Note: The CI/CD is not designed to handle multiple PRs.
+3. **Run CI / CD**
+   The plan workflow will run automatically on pull requests to the `main` branch, and on merged PRs to `main`.
 
 ## Notes
 
-- Ensure your AWS IAM role has appropriate permissions for S3 operations.
 - Review and adjust the `.github/workflows/*.yml` files if you need to modify the CI/CD process.
 - Always review plans before applying changes to your infrastructure.
+
+## State bucket structure
+
+- `_main.tfstate` – organizes the main project's state object.
+- `coreinfra.tfstate` – the "metastate" object.
