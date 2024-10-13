@@ -4,7 +4,7 @@ variable "region" {
 
 variable "key_name" {
   description = "Security key pair name."
-  sensitive = true
+  sensitive   = true
 }
 
 variable "vpc_id" {
