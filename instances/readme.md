@@ -8,9 +8,10 @@
 ## Files
 
 - `ami.tf`: AMI selector, we are using Amazon Linux 2 x86_64
-- `bastion.tf`: Bastion instance configuration secured by ec2 managed key for login.
-- `private_instance.tf`: Private instance example configuration with no login security.
-- `security_groups.tf` Security group configurations for bastion and private instances.
+- `bastion.tf`: Bastion instance configuration secured by KeyPair.
+- `private_instance.tf`: 2 private instances example configuration
+- `private_instance.tf`: 2 public instances example configuration
+- `security_groups.tf`: Security group configurations for bastion and private instances.
 
 ## Get a .pem Key from AWS
 
