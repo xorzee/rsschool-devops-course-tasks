@@ -21,3 +21,8 @@ resource "aws_security_group" "bastion" {
     Name = "bastion-sg"
   }
 }
+
+
+output "bastion_security_group_id" {
+  value = aws_security_group.bastion.id
+}
