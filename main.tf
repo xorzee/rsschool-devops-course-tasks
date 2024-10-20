@@ -9,8 +9,7 @@ module "network" {
 module "instances" {
   source = "./instances"
 
-  private_subnet_ids = module.network.private_subnet_ids
-  public_subnet_ids  = module.network.public_subnet_ids
-  vpc_id             = module.network.vpc_id
-  key_name           = var.security_ec2_key_pair_name
+  public_subnet_ids = module.network.public_subnet_ids
+  vpc_id            = module.network.vpc_id
+  key_name          = var.security_ec2_key_pair_name
 }
