@@ -13,3 +13,11 @@ terraform {
     encrypt = true
   }
 }
+
+provider "aws" {
+  default_tags {
+    tags = {
+      "edu:project" : "rs-school"
+    }
+  }
+}

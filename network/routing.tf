@@ -6,12 +6,9 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.main.id
   }
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "public-route-table"
-    }
-  )
+  tags = {
+    Name = "public-route-table"
+  }
 }
 
 resource "aws_route_table_association" "public" {
@@ -23,12 +20,9 @@ resource "aws_route_table_association" "public" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "private-route-table"
-    }
-  )
+  tags = {
+    Name = "private-route-table"
+  }
 }
 
 resource "aws_route_table_association" "private" {

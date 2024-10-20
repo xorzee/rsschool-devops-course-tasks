@@ -17,12 +17,9 @@ resource "aws_security_group" "bastion" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "bastion-sg"
-    }
-  )
+  tags = {
+    Name = "bastion-sg"
+  }
 }
 
 resource "aws_security_group" "private_instance" {
@@ -70,12 +67,9 @@ resource "aws_security_group" "private_instance" {
     description = "Anywhere."
   }
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "private-instance-sg"
-    }
-  )
+  tags = {
+    Name = "private-instance-sg"
+  }
 }
 
 resource "aws_security_group" "public_instance" {
@@ -123,10 +117,7 @@ resource "aws_security_group" "public_instance" {
     description = "Allow all outbound traffic"
   }
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "public-instance-sg"
-    }
-  )
+  tags = {
+    Name = "public-instance-sg"
+  }
 }

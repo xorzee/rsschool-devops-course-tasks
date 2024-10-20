@@ -7,10 +7,7 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids      = [aws_security_group.bastion.id]
   associate_public_ip_address = true
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "bastion-host"
-    }
-  )
+  tags = {
+    Name = "bastion-host"
+  }
 }

@@ -5,11 +5,11 @@ variable "role_name" {
 }
 
 variable "github_username" {
-  type = string
+  type    = string
   default = "xorzee"
 }
 
 variable "github_repository" {
-  type = string
+  type    = string
   default = "rsschool-devops-course-tasks"
 }

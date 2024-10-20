@@ -1,7 +1,3 @@
-variable "region" {
-  description = "AWS region"
-}
-
 variable "key_name" {
   description = "Security key pair name."
   sensitive   = true

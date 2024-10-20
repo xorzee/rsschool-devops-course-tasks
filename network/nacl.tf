@@ -1,12 +1,9 @@
 resource "aws_network_acl" "main" {
   vpc_id = aws_vpc.main.id
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "main-nacl"
-    }
-  )
+  tags = {
+    Name = "main-nacl"
+  }
 }
 
 resource "aws_network_acl_association" "main" {

@@ -9,10 +9,7 @@ resource "aws_instance" "public_instances" {
   vpc_security_group_ids      = [aws_security_group.public_instance.id]
   associate_public_ip_address = true
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "public-instance-${count.index}"
-    }
-  )
+  tags = {
+    Name = "public-instance-${count.index}"
+  }
 }

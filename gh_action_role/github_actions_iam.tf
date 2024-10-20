@@ -3,7 +3,6 @@ resource "aws_iam_openid_connect_provider" "github_oidc" {
 
   client_id_list = ["sts.amazonaws.com"]
 
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html#oidc-obtain-thumbprint
   thumbprint_list = [
     "d89e3bd43d5d909b47a18977aa9d5ce36cee184c"
   ]
@@ -49,7 +48,7 @@ variable "policy_arns" {
 }
 
 resource "aws_iam_role_policy_attachment" "github_actions_policy_attach" {
-  count = length(var.policy_arns)
+  count      = length(var.policy_arns)
   role       = aws_iam_role.github_actions.name
   policy_arn = var.policy_arns[count.index]
 }

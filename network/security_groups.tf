@@ -17,10 +17,7 @@ resource "aws_security_group" "nat" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = "nat-sg"
-    }
-  )
+  tags = {
+    Name = "nat-sg"
+  }
 }
