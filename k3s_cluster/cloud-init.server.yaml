@@ -1,0 +1,29 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - awscli
+
+write_files:
+  - path: /tmp/install-k3s.sh
+    permissions: '0755'
+    owner: root:root
+    content: |
+      #!/bin/bash
+
+      set -e
+
+      amazon-linux-extras enable selinux-ng
+      yum clean metadata
+      yum install selinux-policy-targeted -y
+
+      curl -sfL https://get.k3s.io | sh -s - server --kube-apiserver-arg "bind-address=0.0.0.0"
+      TOKEN=$(cat /var/lib/rancher/k3s/server/node-token)
+      aws ssm put-parameter --name ${ssm_parameter_name} --type SecureString --value $TOKEN --overwrite --region ${aws_region}
+
+      chmod 644 /etc/rancher/k3s/k3s.yaml
+
+runcmd:
+  - "bash -c 'sudo /tmp/install-k3s.sh'"
